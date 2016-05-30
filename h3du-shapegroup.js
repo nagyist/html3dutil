@@ -16,6 +16,18 @@ H3DU.ShapeGroup = function(){
  this.transform=new H3DU.Transform();
 }
 /**
+ * Not documented yet.
+ */
+H3DU.ShapeGroup.prototype.copy=function(){
+ var sh=new ShapeGroup();
+ sh.visible=this.visible;
+ sh.transform=this.transform.copy();
+ for(var i=0;i<this.shapes.length;i++){
+  sh.addShape(this.shapes[i].copy());
+ }
+ return sh;
+}
+/**
 * Adds a 3D shape to this shape group.  Its reference, not a copy,
 * will be stored in the list of shapes.
 * @param {H3DU.Shape|H3DU.ShapeGroup} shape A 3D shape.

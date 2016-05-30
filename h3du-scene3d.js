@@ -662,7 +662,7 @@ H3DU.Scene3D.prototype.clearDepth=function(){
 /**
  * Gets the number of vertices composed by
  * all shapes in this scene.
- * @deprecated Use the vertexCount method of H3DU.Batch3D objects instead.  For compatibility, existing code that doesn't use H3DU.Batch3D can still call this method until it renders a custom H3DU.Batch3D.  This compatibility behavior may be dropped in the future.
+ * @deprecated Use the vertexCount method of {@link H3DU.Batch3D} objects instead.  For compatibility, existing code that doesn't use H3DU.Batch3D can still call this method until it renders a custom H3DU.Batch3D.  This compatibility behavior may be dropped in the future.
  * @returns {Number} Return value. */
 H3DU.Scene3D.prototype.vertexCount=function(){
 if(this._errors)throw new Error();
@@ -674,7 +674,7 @@ return this._subScene.vertexCount();
 /**
 * Gets the number of primitives (triangles, lines,
 * and points) composed by all shapes in this scene.
-* @deprecated  Use the primitiveCount method of H3DU.Batch3D objects instead.  For compatibility, existing code that doesn't use H3DU.Batch3D can still call this method until it renders a custom H3DU.Batch3D.  This compatibility behavior may be dropped in the future.
+* @deprecated  Use the primitiveCount method of {@link H3DU.Batch3D} objects instead.  For compatibility, existing code that doesn't use H3DU.Batch3D can still call this method until it renders a custom H3DU.Batch3D.  This compatibility behavior may be dropped in the future.
 * @returns {Number} Return value. */
 H3DU.Scene3D.prototype.primitiveCount=function(){
 if(this._errors)throw new Error();
@@ -702,7 +702,7 @@ this._subScene.setProjectionMatrix(matrix);
 /**
 *  Sets this scene's view matrix. The view matrix can also
 * be set using the {@link H3DU.Scene3D#setLookAt} method.
-* @deprecated TODO: Document the replacement for this method.  For compatibility, existing code that doesn't use H3DU.Batch3D can still call this method until it renders a custom H3DU.Batch3D.  This compatibility behavior may be dropped in the future.
+* @deprecated Use the setViewMatrix method of {@link H3DU.Batch3D} objects instead.  For compatibility, existing code that doesn't use H3DU.Batch3D can still call this method until it renders a custom H3DU.Batch3D.  This compatibility behavior may be dropped in the future.
  * @param {Array<Number>} matrix A 16-element matrix (4x4).
  * @returns {H3DU.Scene3D} This object.
 */

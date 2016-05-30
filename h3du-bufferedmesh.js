@@ -6,7 +6,7 @@ http://creativecommons.org/publicdomain/zero/1.0/
 If you like this, you should donate to Peter O.
 at: http://upokecenter.dreamhosters.com/articles/donate-now-2/
 */
-/* global H3DU, H3DU.Mesh */
+/* global H3DU */
 
 /** @private */
 H3DU.BufferedSubMesh=function(mesh, context){
@@ -14,8 +14,8 @@ H3DU.BufferedSubMesh=function(mesh, context){
  var smb=(mesh instanceof H3DU.SubMeshBuffer) ? mesh :
    new H3DU.SubMeshBuffer(mesh);
  this.smb=smb;
- this.verts=context.createBuffer();
- if(!this.verts)throw new Error("can't create buffer")
+ this.vertBuffers=[];
+
  this.indices=context.createBuffer();
  if(!this.indices)throw new Error("can't create face buffer")
  this.arrayObjectExt=context.getExtension("OES_vertex_array_object")
@@ -24,12 +24,17 @@ H3DU.BufferedSubMesh=function(mesh, context){
  if(this.arrayObjectExt){
    this.vao=this.arrayObjectExt.createVertexArrayOES();
  }
- context.bindBuffer(context.ARRAY_BUFFER, this.verts);
  context.bindBuffer(context.ELEMENT_ARRAY_BUFFER, this.indices);
- context.bufferData(context.ARRAY_BUFFER,
-    smb.vertices, context.STATIC_DRAW);
  context.bufferData(context.ELEMENT_ARRAY_BUFFER,
     smb.indices, context.STATIC_DRAW);
+ for(var i=0;i<this.smb._accessors.length;i++){
+  if(!this.smb._accessors[i])continue;
+  this.vertBuffers.push(context.createBuffer());
+  if(!this.vertBuffers[i])throw new Error("can't create buffer for vertices")
+  context.bindBuffer(context.ARRAY_BUFFER, this.vertBuffers[i]);
+  context.bufferData(context.ARRAY_BUFFER,
+    this.smb._accessors[i][0], context.STATIC_DRAW);
+ }
  var type=context.UNSIGNED_SHORT;
  if(smb.indexBufferSize === 4){
   type=context.UNSIGNED_INT;
@@ -98,16 +103,6 @@ H3DU.BufferedMesh.prototype.getContext=function(){
  "use strict";
 return this.context;
 };
-/** @private */
-H3DU.BufferedMesh.prototype.getFormat=function(){
- "use strict";
- var format=0;
- for(var i=0;i<this.subMeshes.length;i++){
-  var sm=this.subMeshes[i];
-  format|=sm.smb.format;
- }
- return format;
-};
 
 /**
 * Binds the buffers in this object to attributes according
@@ -151,20 +146,18 @@ if(this.verts!==null)
  this._lastKnownProgram=null;
  this._attribLocations=[];
 };
+
+
+
 /** @private */
 H3DU.BufferedSubMesh.prototype._getAttribLocations=function(program,context){
  if(this._lastKnownProgram!=program){
   this._lastKnownProgram=program;
-  this._attribLocations=[
-    program.get("position"),
-    program.get("normal"),
-    program.get("colorAttr"),
-    program.get("uv"),
-    program.get("tangent"),
-    program.get("bitangent")];
-  for(var i=0;i<6;i++){
-   if(this._attribLocations[i]==null){
+  for(var i=0;i<this.smb._accessors.length;i++){
+   if(!this.smb._accessors[i]){
     this._attribLocations[i]=-1;
+   } else {
+    this._attribLocations[i]=program.get(this.smb._accessors[i][6]);
    }
   }
   return true;
@@ -183,22 +176,25 @@ H3DU.BufferedSubMesh.prototype._prepareDraw=function(program, context){
    rebind=true;
   }
   if(rebind) {
-   context.bindBuffer(context.ARRAY_BUFFER, this.verts);
    context.bindBuffer(context.ELEMENT_ARRAY_BUFFER, this.indices);
    for(var i=0;i<this._attribLocations.length;i++){
     var attrib=this._attribLocations[i];
     if(attrib>=0){
-     if(this.smb._attribsUsed[i]>=0){
+     if(this.smb._accessors[i]){
       context.enableVertexAttribArray(attrib);
-      context.vertexAttribPointer(attrib, this.smb._sizes[i],
-        context.FLOAT, false,this.smb._stride*4, this.smb._attribsUsed[i]*4);
+      context.bindBuffer(context.ARRAY_BUFFER, this.vertBuffers[i]);
+      context.vertexAttribPointer(attrib,
+        this.smb._accessors[i][5],
+        this.smb._accessors[i][3], false,
+        this.smb._accessors[i][2],
+        this.smb._accessors[i][1]);
      } else {
       context.disableVertexAttribArray(attrib);
      }
     }
    }
   }
-  var useColorAttr=(this.smb._attribsUsed[2]>=0) ? 1.0 : 0.0;
+  var useColorAttr=(this.smb._accessors[2]) ? 1.0 : 0.0;
   program.setUniforms({"useColorAttr":useColorAttr});
 }
 /**
@@ -233,7 +229,7 @@ H3DU.BufferedMesh.prototype.vertexCount=function(){
  "use strict";
 var ret=0;
  for(var i=0;i<this.subMeshes.length;i++){
-  ret+=this.subMeshes[i].smb.numVertices;
+  ret+=this.subMeshes[i].smb.vertexCount();
  }
  return ret;
 };

@@ -9,7 +9,12 @@ at: http://upokecenter.dreamhosters.com/articles/donate-now-2/
 /* global H3DU.Math */
 /**
 *  A class offering a convenient way to set a transformation
-* from one coordinate system to another.
+* from one coordinate system to another.<p>
+* The class offers two ways to set transforms: either by passing a 4x4
+* matrix, or by setting its position (translation), quaternion (rotation), and scale parameters.
+* If the latter option is used, the resulting transformation is a multiplication of three
+* different transformations in this
+* order: <code>translation * rotation * scale</code>.
 * @class
 * @alias H3DU.Transform
 */

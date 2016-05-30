@@ -14,7 +14,7 @@
 H3DU.Shape = function(mesh){
   if((mesh===null || typeof mesh==="undefined"))throw new Error("mesh is null");
   if(mesh instanceof H3DU.Mesh){
-   this.bufferedMesh=new H3DU.MeshBuffer(mesh);
+   this.bufferedMesh=H3DU.MeshBuffer.fromMesh(mesh);
   } else {
    if(!H3DU.Shape._bufferedMeshWarning && mesh instanceof H3DU.BufferedMesh){
     console.warn("Using an H3DU.BufferedMesh in H3DU.Shape objects is deprecated.")
@@ -76,6 +76,7 @@ H3DU.Shape.prototype.getVisible=function(){
 */
 H3DU.Shape.prototype.setColor=function(r,g,b,a){
   var c=H3DU.toGLColor(r,g,b,a);
+  // TODO: Consider setting only the diffuse color
   return this.setMaterialParams({"ambient":c,"diffuse":c})
 };
 /**
@@ -101,8 +102,8 @@ H3DU.Shape.prototype.setShader=function(shader){
 };
 /**
  * Sets parameters of this shape's material.
- * @param {*} params An object described in {@link H3DU.Material#setParams}.
- * @param {*} This object.
+ * @param {Object} params An object described in {@link H3DU.Material#setParams}.
+ * @param {H3DU.Shape} This object.
  */
 H3DU.Shape.prototype.setMaterialParams=function(params){
  if(this.material){

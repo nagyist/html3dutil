@@ -47,9 +47,7 @@ H3DU.Material = function(ambient, diffuse, specular,shininess,emission) {
  * (0,0,0) means no ambient color,
  * and (1,1,1) means total ambient color.<p>
  * Setting ambient color and diffusion color to the same value usually defines an object's
- * color.<p>
- * In the default shader program, if a mesh defines its own colors, those
- * colors are used for ambient color rather than this property.
+ * color.
  */
  this.ambient=ambient ? ambient.slice(0,3) : [0.2,0.2,0.2];
  /**
