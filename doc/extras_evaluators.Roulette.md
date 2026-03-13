@@ -33,7 +33,7 @@ of another circle, whose position is fixed, with a center of (0,0).
 * [evaluate](#extras_evaluators.Roulette_evaluate)<br>Finds the position of this curve at the specified u-coordinate.
 * [fitRange](#extras_evaluators.Roulette_fitRange)<br>Creates a curve evaluator object for a curve that follows the same
 path as this one but has its u-coordinates remapped to fit the specified range.
-* [getLength](#extras_evaluators.Roulette_getLength)<br>Convenience method for getting the total length of this curve.
+* [getLength](#extras_evaluators.Roulette_getLength)<br>Convenience method for approximating the total length of this curve.
 * [getPoints](#extras_evaluators.Roulette_getPoints)<br>Gets an array of positions on the curve at fixed intervals
 of u-coordinates.
 * [getPointsAsObjects](#extras_evaluators.Roulette_getPointsAsObjects)<br>Gets an array of positions on the curve at fixed intervals
@@ -202,7 +202,7 @@ Return value. (Type: <a href="Curve.md">Curve</a>)
 
 ### module:extras/evaluators.Roulette#getLength()
 
-Convenience method for getting the total length of this curve.
+Convenience method for approximating the total length of this curve.
 
 #### Return Value
 

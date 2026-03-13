@@ -61,7 +61,7 @@ Hermite spline.
 * [fromTCBSpline](#PiecewiseCurve.fromTCBSpline)<br>Creates a piecewise curve made up of B-spline curves from the control points of a
 cubic TCB spline (tension/continuity/bias spline, also known as Kochanek&ndash;Bartels spline).
 * [getCurves](#PiecewiseCurve_getCurves)<br>Gets a reference to the curves that make up this piecewise curve.
-* [getLength](#PiecewiseCurve_getLength)<br>Convenience method for getting the total length of this curve.
+* [getLength](#PiecewiseCurve_getLength)<br>Convenience method for approximating the total length of this curve.
 * [getPoints](#PiecewiseCurve_getPoints)<br>Gets an array of positions on the curve at fixed intervals
 of u-coordinates.
 * [getPointsAsObjects](#PiecewiseCurve_getPointsAsObjects)<br>Gets an array of positions on the curve at fixed intervals
@@ -286,7 +286,7 @@ The curves that make up this piecewise curve. (Type: Array.&lt;<a href="Curve.md
 
 ### PiecewiseCurve#getLength()
 
-Convenience method for getting the total length of this curve.
+Convenience method for approximating the total length of this curve.
 
 #### Return Value
 

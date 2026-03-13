@@ -237,7 +237,7 @@ Curve.prototype.tangent = function(u) {
 };
 
 /**
- * Convenience method for getting the total length of this curve.
+ * Convenience method for approximating the total length of this curve.
  * @returns {number} The distance from the start of the curve to its end.
  */
 Curve.prototype.getLength = function() {

@@ -148,7 +148,7 @@ path as this one but has its u-coordinates remapped to fit the specified range.<
 in [Apple TN1052, "QuickDraw GX ConicLibrary.c in Detail: Description and
 Derivations", 1996](https://developer.apple.com/library/archive/technotes/tn/tn1052.html).<li><a href='#BSplineCurve_getControlPoints'>getControlPoints</a><br>Gets a reference to the array of control points used
 in this curve object.<li><a href='#BSplineCurve_getKnots'>getKnots</a><br>Gets a reference to the array of knots used
-in this curve object.<li><a href='#BSplineCurve_getLength'>getLength</a><br>Convenience method for getting the total length of this curve.<li><a href='#BSplineCurve_getPoints'>getPoints</a><br>Gets an array of positions on the curve at fixed intervals
+in this curve object.<li><a href='#BSplineCurve_getLength'>getLength</a><br>Convenience method for approximating the total length of this curve.<li><a href='#BSplineCurve_getPoints'>getPoints</a><br>Gets an array of positions on the curve at fixed intervals
 of u-coordinates.<li><a href='#BSplineCurve_getPointsAsObjects'>getPointsAsObjects</a><br>Gets an array of positions on the curve at fixed intervals
 of u-coordinates.<li><a href='#BSplineCurve_jerk'>jerk</a><br>Finds an approximate jerk vector at the specified u-coordinate of this curve.<li><a href='#BSplineCurve_normal'>normal</a><br>Finds an approximate principal normal vector at the specified u-coordinate of this curve.<li><a href='#BSplineCurve_split'>split</a><br>Splits this B-spline curve into two at the specified point.<li><a href='#BSplineCurve_tangent'>tangent</a><br>Convenience method for finding an approximate tangent vector of this curve at the specified u-coordinate.<li><a href='#BSplineCurve_toArcLengthParam'>toArcLengthParam</a><br>Gets a curve evaluator object for a curve that follows the same
 path as this one but has its u-coordinates remapped to
@@ -247,7 +247,7 @@ in this curve object.<h4> Return Value</h4>An object described in the constructo
 <h3> BSplineCurve#getKnots()</h3>Gets a reference to the array of knots used
 in this curve object.<h4> Return Value</h4>An object described in the constructor to <a href="BSplineCurve.html">BSplineCurve</a>. (Type: Array.&lt;Array.&lt;number>>)<a name='BSplineCurve_getLength'></a>
 
-<h3> BSplineCurve#getLength()</h3>Convenience method for getting the total length of this curve.<h4> Return Value</h4>The distance from the start of the curve to its end. (Type: number)<a name='BSplineCurve_getPoints'></a>
+<h3> BSplineCurve#getLength()</h3>Convenience method for approximating the total length of this curve.<h4> Return Value</h4>The distance from the start of the curve to its end. (Type: number)<a name='BSplineCurve_getPoints'></a>
 
 <h3> BSplineCurve#getPoints(count)</h3>Gets an array of positions on the curve at fixed intervals
 of u-coordinates. Note that these positions will not generally be

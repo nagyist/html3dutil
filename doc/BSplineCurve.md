@@ -210,7 +210,7 @@ Derivations", 1996](https://developer.apple.com/library/archive/technotes/tn/tn1
 in this curve object.
 * [getKnots](#BSplineCurve_getKnots)<br>Gets a reference to the array of knots used
 in this curve object.
-* [getLength](#BSplineCurve_getLength)<br>Convenience method for getting the total length of this curve.
+* [getLength](#BSplineCurve_getLength)<br>Convenience method for approximating the total length of this curve.
 * [getPoints](#BSplineCurve_getPoints)<br>Gets an array of positions on the curve at fixed intervals
 of u-coordinates.
 * [getPointsAsObjects](#BSplineCurve_getPointsAsObjects)<br>Gets an array of positions on the curve at fixed intervals
@@ -479,7 +479,7 @@ An object described in the constructor to <a href="BSplineCurve.md">BSplineCurve
 
 ### BSplineCurve#getLength()
 
-Convenience method for getting the total length of this curve.
+Convenience method for approximating the total length of this curve.
 
 #### Return Value
 

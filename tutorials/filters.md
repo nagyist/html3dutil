@@ -30,11 +30,9 @@ It also describes several examples of graphics filters.
 
 In the HTML 3D Library, graphics filters are functions used to modify the appearance
 of the screen after each frame. They are implemented in a language called GLSL, or GL
-Shading Language.  GLSL programs are called "shaders", and they are compiled into code that runs on a GPU, or graphics processing unit.
+Shading Language.  GLSL programs are called "shaders", and they are compiled into code that usually runs on a programmable video card.
 
-Graphics filters are considered "fragment shaders", or shaders that process one pixel at a time. GPUs
-can render graphics very fast with such shaders because one fragment shader can process multiple pixels in parallel, without
-affecting the other pixels, and GPUs are often much better designed for parallel processing than CPUs.
+Graphics filters are considered "fragment shaders", or shaders that process one pixel at a time. Video cards from 2005 and later can render graphics very fast with such shaders because one fragment shader can process multiple pixels in parallel, without affecting the other pixels, and these video cards are often much better designed for parallel processing than CPUs.
 
 For graphics filters to work, the 3D scene must be rendered to an off-screen buffer called
 a _frame buffer_. The frame buffer acts like a texture which will be rendered back to

@@ -101,7 +101,7 @@ but has a different set of end points.
 * [evaluate](#Curve_evaluate)<br>Finds the position of this curve at the specified u-coordinate.
 * [fitRange](#Curve_fitRange)<br>Creates a curve evaluator object for a curve that follows the same
 path as this one but has its u-coordinates remapped to fit the specified range.
-* [getLength](#Curve_getLength)<br>Convenience method for getting the total length of this curve.
+* [getLength](#Curve_getLength)<br>Convenience method for approximating the total length of this curve.
 * [getPoints](#Curve_getPoints)<br>Gets an array of positions on the curve at fixed intervals
 of u-coordinates.
 * [getPointsAsObjects](#Curve_getPointsAsObjects)<br>Gets an array of positions on the curve at fixed intervals
@@ -233,7 +233,7 @@ Return value. (Type: <a href="Curve.md">Curve</a>)
 
 ### Curve#getLength()
 
-Convenience method for getting the total length of this curve.
+Convenience method for approximating the total length of this curve.
 
 #### Return Value
 
